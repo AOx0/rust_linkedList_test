@@ -109,14 +109,7 @@ impl<T: Copy + Debug> List<T> {
     }
 
     pub fn iter(&mut self, action: impl Fn(&mut Node<T>)) {
-        unsafe {
-            action(&mut (*self.list.borrow_mut().as_ptr()));
-            let mut current: &Option<NodeLink<T>> = &(*self.list.borrow_mut().as_ptr()).next;
-            for _ in 1..self.len {
-                action(&mut (*current.as_ref().unwrap().as_ptr()));
-                current = &(*current.as_ref().unwrap().as_ptr()).next;
-            }
-        }
+        self.iter_in(1..self.len, action);
     }
 
     pub fn iter_in(&mut self, range: Range<usize>, action: impl Fn(&mut Node<T>)) {
