@@ -10,7 +10,7 @@ delete an element anywhere.
 
 ## Features
 - **Circular linked**: the last element points to the first one.
-- **Push** (currently named *append*)
+- **Push**
 
 ![][image-1]
 
